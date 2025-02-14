@@ -5,6 +5,9 @@ import { APP_CONFIG, DEFAULT_PORT } from './constants/app.constants';
 
 import { errorHandler, errorNotFoundHandler } from './middlewares/errorHandler';
 
+// Modules
+import { indexModule } from './modules/index/index.module';
+
 // Create Express server
 export const app = express();
 
@@ -15,7 +18,7 @@ app.use(logger('dev'));
 
 app.use(express.json());
 
-app.use('/');
+app.use('/', ...indexModule.routes);
 
 app.use(errorNotFoundHandler);
 app.use(errorHandler);
