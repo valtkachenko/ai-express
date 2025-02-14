@@ -1,60 +1,85 @@
-# Express TypeScript template
+# AI express test assignment
 
-# Pre-reqs
-
-- Install [Node.js](https://nodejs.org/en/)
-- Install [VS Code](https://code.visualstudio.com/)
-
-# Getting started
-
+## Prerequisites
 - Clone the repository
 
 ```
-git clone https://github.com/greenroach/express-ts-template.git
+git clone https://github.com/valtkachenko/ai-express.git
+cd ai-express
+```
+- Copy .env.example to .env file and fill it
+```bash  
+cp .env-example .env
+```
+Environment variables:
+```
+PORT=5001
+
+# project relies on a gpt-4o-mini model 
+OPENAI_API_KEY=...
 ```
 
-- Install dependencies
-
+## Running locally via docker compose
+1. Make sure docker is installed on your machine
+2. Make sure to set environment variables (.env)
+3. Run
 ```
-cd <project_name>
+docker compose up --build
+```
+And in order to stop container:
+```
+docker compose down
+```
+
+
+## Running locally via Docker
+1. Make sure docker is installed on your machine
+2. Make sure to set environment variables (.env)
+3. Run:
+```
+docker build -t ai-express .
+docker run --name ai-express -p 5001:5001 ai-express
+```
+
+## Running locally
+1. Make sure Node.js v20+ is installed
+2. Install dependencies:
+```
 npm install
+``` 
+3. Make sure to set environment variables (.env)
+4. Start the server
+```
+npm run start
+``` 
+
+## Available endpoints
+1. GET /
+
+Test "hello-world" endpoint
+2. POST /sales/insights
+
+Request body example:
+```
+[
+  {
+    "name": "Alice Johnson",
+    "email": "alice.johnson1@example.com",
+    "product": "Widget A",
+    "category": "Widgets",
+    "amount": 120.50,
+    "date": "2023-03-01",
+    "state": "California"
+  },
+  {
+    "name": "Bob Smith",
+    "email": "bob.smith2@example.com",
+    "product": "Widget A",
+    "category": "Widgets",
+    "amount": 85.00,
+    "date": "2023-03-02",
+    "state": "California"
+  }
+]
 ```
 
-- Build and run the project
-
-```
-npm run build
-npm start
-```
-
-Navigate to `http://localhost:3000`
-
-### Using the debugger in VS Code
-
-Debugging is one of the places where VS Code really shines over other editors.
-Node.js debugging in VS Code is easy to setup and even easier to use.
-This project comes pre-configured with everything you need to get started.
-
-When you hit `F5` in VS Code, it looks for a top level `.vscode` folder with a `launch.json` file.
-In this file, you can tell VS Code exactly what you want to do:
-
-```json
-{
-  "type": "node",
-  "request": "attach",
-  "name": "Attach by Process ID",
-  "processId": "${command:PickProcess}",
-  "protocol": "inspector"
-}
-```
-
-This is mostly identical to the "Node.js: Attach by Process ID" template with one minor change.
-We added `"protocol": "inspector"` which tells VS Code that we're using the latest version of Node which uses a new debug protocol.
-
-With this file in place, you can hit `F5` to attach a debugger.
-You will probably have multiple node processes running, so you need to find the one that shows `node dist/server.js`.
-Now just set your breakpoints and go!
-
----
-
-Based on [TypeScript Node Starter](https://github.com/Microsoft/TypeScript-Node-Starter) and [Express Generator](https://github.com/expressjs/generator)
