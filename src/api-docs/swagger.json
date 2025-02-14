@@ -1,0 +1,332 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AI express test assignment",
+    "version": "1"
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Test 'HelloWorld' endpoint",
+        "operationId": "HelloWorld",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/helloWorldResponse"
+            }
+          }
+        },
+        "tags": [
+          "Test"
+        ]
+      }
+    },
+    "/sales/insights": {
+      "post": {
+        "summary": "Create actionable insights",
+        "operationId": "createReport",
+        "responses": {
+          "200": {
+            "description": "Sales report",
+            "schema": {
+              "$ref": "#/definitions/salesReportResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/salesReportBody"
+            }
+          }
+        ],
+        "tags": [
+          "Sales"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "salesReportResponse": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "$ref": "#/definitions/stats"
+        },
+        "summary": {
+          "type": "string",
+          "format": "string"
+        }
+      },
+      "example": {
+        "stats": {
+          "totalSales": 12757.25,
+          "avgSalePerTransaction": 127.57,
+          "bestCategory": {
+            "name": "Widgets",
+            "sales": 9202.75
+          },
+          "bestProduct": {
+            "name": "Widget A",
+            "count": 60
+          },
+          "topCustomers": [
+            {
+              "name": "Isabella Johnson",
+              "email": "isabella.johnson85@example.com",
+              "amountSpent": 220
+            },
+            {
+              "name": "Frank Garcia",
+              "email": "frank.garcia82@example.com",
+              "amountSpent": 210
+            },
+            {
+              "name": "Henry Irving",
+              "email": "henry.irving84@example.com",
+              "amountSpent": 205.25
+            }
+          ],
+          "avgSalesPerCategory": [
+            {
+              "category": "Widgets",
+              "avgSale": 115.03
+            },
+            {
+              "category": "Gadgets",
+              "avgSale": 195.22
+            },
+            {
+              "category": "Tools",
+              "avgSale": 160.22
+            }
+          ],
+          "categoriesPercentage": [
+            {
+              "category": "Widgets",
+              "percentage": 72.14
+            },
+            {
+              "category": "Gadgets",
+              "percentage": 15.3
+            },
+            {
+              "category": "Tools",
+              "percentage": 12.56
+            }
+          ],
+          "bestLocations": [
+            {
+              "sales": 6763.5,
+              "name": "California"
+            },
+            {
+              "sales": 1446.25,
+              "name": "Texas"
+            },
+            {
+              "sales": 1618,
+              "name": "New York"
+            },
+            {
+              "sales": 1903.75,
+              "name": "Florida"
+            },
+            {
+              "sales": 1025.75,
+              "name": "Illinois"
+            }
+          ]
+        },
+        "summary": "# Business Sales Report\n\n**Reporting Period:** [Specify the time period, e.g., Q3 2023]  \n**Prepared for:** [Manager's Name/Title]  \n**Prepared by:** [Your Name/Title]  \n**Date:** [Current Date]\n\n---\n\n## Executive Summary\n\nThis report provides an overview of sales performance for the specified period, highlighting total sales, key performance indicators, and product and location-based insights. The data illustrates strong performance, particularly within the Widgets category and in California, indicating a need to further capitalize on these strengths moving forward.\n\n## Key Metrics\n\n- **Total Sales:** $12,757.25\n- **Average Sale per Transaction:** $127.57\n- **Best Performing Category:** Widgets ($9,202.75)\n- **Top Selling Product:** Widget A (60 units sold)\n- **Top Selling Location:** California ($6,763.50)\n\n## Performance Analysis\n\n### Total Sales and Transactions\nThe overall sales figure of **$12,757.25** demonstrates a solid performance for this period. The **average sale per transaction** stands at **$127.57**, indicating steady customer spending and engagement. \n\n### Category Performance\nThe **Widgets category** emerged as the best performer, contributing **$9,202.75** to total sales. This represents approximately **72.2%** of total sales, underscoring the significant demand for products within this category. \n\n### Product Sales\nThe **top-selling product**, **Widget A**, achieved sales of **60 units**. This suggests that Widget A is not only popular but also a key driver of revenue within the Widgets category. Additional marketing efforts or promotions should consider leveraging Widget A's popularity to enhance overall sales.\n\n### Geographical Insights\nSales in **California** totalled **$6,763.50**, accounting for around **53%** of total sales. This region stands out as a strategic market, suggesting that localized marketing efforts or targeted campaigns could further exploit this lucrative area. \n\n## Conclusions and Recommendations\n\nThe sales data indicates a thriving business landscape with strong sales rooted in the Widgets category, especially in California. To build on this momentum, the following actions are recommended:\n\n1. **Marketing Focus on Widgets:** Increase marketing efforts and promotions specifically targeting the Widgets category to sustain and grow sales.\n2. **Leverage Top Products:** Consider bundling Widget A with complementary products or launching additional marketing initiatives that highlight its benefits to boost sales even further.\n3. **Geographical Expansion:** Given California's strong sales performance, explore options for expansion, targeted advertising, or localized promotions to build an even larger customer base in this region.\n4. **Transactional Efficiency:** With an encouraging average sale per transaction of **$127.57**, explore opportunities to cross-sell or upsell items to enhance transaction values.\n\nBy strategically addressing these points, the business can continue to enhance its revenue streams and capitalize on existing strengths.\n\n---\n\n**Prepared by:** [Your Name]  \n**[Your Title]**  \n**[Your Contact Information]**"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "totalSales": {
+          "type": "number",
+          "format": "number"
+        },
+        "avgSalePerTransaction": {
+          "type": "number",
+          "format": "number"
+        },
+        "bestCategory": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "format": "string"
+            },
+            "sales": {
+              "type": "number",
+              "format": "number"
+            }
+          }
+        },
+        "bestProduct": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "format": "string"
+            },
+            "count": {
+              "type": "number",
+              "format": "number"
+            }
+          }
+        },
+        "topCustomers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "format": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "string"
+              },
+              "amountSpent": {
+                "type": "number",
+                "format": "number"
+              }
+            }
+          }
+        },
+        "avgSalesPerCategory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "format": "string"
+              },
+              "avgSale": {
+                "type": "number",
+                "format": "number"
+              }
+            }
+          }
+        },
+        "categoriesPercentage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "format": "string"
+              },
+              "percentage": {
+                "type": "number",
+                "format": "number"
+              }
+            }
+          }
+        },
+        "bestLocations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sales": {
+                "type": "number",
+                "format": "number"
+              },
+              "name": {
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "salesReportBody": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "string"
+          },
+          "product": {
+            "type": "string",
+            "format": "string"
+          },
+          "category": {
+            "type": "string",
+            "format": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "number"
+          },
+          "date": {
+            "type": "string",
+            "format": "string"
+          },
+          "state": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "example": [
+        {
+          "name": "Alice Johnson",
+          "email": "alice.johnson1@example.com",
+          "product": "Widget A",
+          "category": "Widgets",
+          "amount": 120.50,
+          "date": "2023-03-01",
+          "state": "California"
+        },
+        {
+          "name": "Bob Smith",
+          "email": "bob.smith2@example.com",
+          "product": "Widget A",
+          "category": "Widgets",
+          "amount": 85.00,
+          "date": "2023-03-02",
+          "state": "California"
+        }
+      ]
+    },
+    "helloWorldResponse": {
+      "type": "object",
+      "properties": {
+        "Hello": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "Hello": "World"
+      }
+    }
+  }
+}
