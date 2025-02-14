@@ -54,10 +54,11 @@ npm run start
 ``` 
 
 ## Available endpoints
-1. GET /
+1. Swagger UI is available at http://localhost:5001/api-docs/
+2. GET /
 
 Test "hello-world" endpoint
-2. POST /sales/insights
+3. POST /sales/insights
 
 Request body example:
 ```
